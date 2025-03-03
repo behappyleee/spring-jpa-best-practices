@@ -6,6 +6,8 @@ import com.cheese.springjpa.Account.domain.Email;
 import com.cheese.springjpa.Account.dto.AccountDto;
 import com.cheese.springjpa.Account.exception.AccountNotFoundException;
 import com.cheese.springjpa.Account.exception.EmailDuplicationException;
+
+import java.math.BigDecimal;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,28 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
 
-
     @Transactional(readOnly = true)
     public Account findById(long id) {
+        Optional<Account> ttt = Optional.empty();
         final Optional<Account> account = accountRepository.findById(id);
         account.orElseThrow(() -> new AccountNotFoundException(id));
+
+        Optional<String> aaaa = Optional.of("Test Check !!!!");
+        aaaa.ifPresentOrElse((value) -> System.out.println("Test !!! Value : " + value), new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("This is Run !!!!");
+            }
+        });
+
+        aaaa.ifPresentOrElse((testStr) -> System.out.println("This : " + testStr), () -> {
+                System.out.println("This is Test !!!");
+        });
+        aaaa.ifPresentOrElse(
+                (testStr) -> System.out.println("This is !!!"),
+                () -> System.out.println("This is Test Run !!!")
+        );
+
         return account.get();
     }
 

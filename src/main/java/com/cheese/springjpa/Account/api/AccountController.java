@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
+import static java.util.Optional.empty;
+
 
 @RestController
 @RequestMapping("accounts")
@@ -29,7 +33,7 @@ public class AccountController {
 
     private final AccountService accountService;
     private final AccountSearchService accountSearchService;
-  private final AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
 //    private final AccountRepository accountRepository;
 
